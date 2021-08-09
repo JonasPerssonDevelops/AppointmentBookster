@@ -29,13 +29,39 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+
+        binding.buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_FirstFragment_to_AddFragment);
+
             }
+            // ^ Here is where the next button magic is that takes you to the next fragment via an action
         });
+
+        binding.mainMenuButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_searchFragment);
+
+            }
+            // ^ Here is where the next button magic is that takes you to the next fragment via an action
+        });
+
+        binding.mainMenuButtonReadme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_readmeFragment);
+
+            }
+            // ^ Here is where the next button magic is that takes you to the next fragment via an action
+        });
+
+
+
     }
 
     @Override

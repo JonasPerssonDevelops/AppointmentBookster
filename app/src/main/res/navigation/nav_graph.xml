@@ -14,6 +14,15 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_AddFragment"
+            app:destination="@id/AddFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_searchFragment"
+            app:destination="@id/SearchFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_readmeFragment"
+            app:destination="@id/ReadmeFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -25,4 +34,25 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/AddFragment"
+        android:name="edu.pdx.cs410J.jpersson.AddFragment"
+        android:label="@string/add_fragment_label"
+        tools:layout="@layout/fragment_add">
+
+        <action
+            android:id="@+id/action_AddFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SearchFragment"
+        android:name="edu.pdx.cs410J.jpersson.SearchFragment"
+        android:label="@string/search_fragment_label"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/ReadmeFragment"
+        android:name="edu.pdx.cs410J.jpersson.ReadmeFragment"
+        android:label="@string/readme_fragment_label"
+        tools:layout="@layout/fragment_readme" />
+
 </navigation>

@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/fragment_first.xml" value="0.1" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/content_main.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/fragment_add.xml" value="0.22" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/fragment_first.xml" value="0.25" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/fragment_readme.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/fragment_search.xml" value="0.25729166666666664" />
+        <entry key="..\:/Users/natadekoko/AndroidStudioProjects/AppointmentBookster/app/src/main/res/layout/fragment_second.xml" value="0.25" />
       </map>
     </option>
   </component>

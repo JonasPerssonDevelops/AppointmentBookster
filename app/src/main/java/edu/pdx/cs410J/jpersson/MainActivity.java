@@ -18,10 +18,15 @@ import edu.pdx.cs410J.jpersson.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    public ActivityMainBinding binding;
+    public static HashMap<String, AppointmentBook> appointmentBooks = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,4 +78,44 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-}
+
+
+// PROJECT 5 DATA PROCESSING ALGORITHMS:
+
+    public static String prettyPrintToString(AppointmentBook book) {
+        if (book != null) {
+            Vector<Appointment> appts = book.getAppointments();
+            if (0 < appts.size()) {
+                String allAppointments = "";
+                allAppointments = allAppointments + book.getOwnerName() + "\n";
+                for (Appointment appt: appts) {
+                    allAppointments = allAppointments + appt.prettyPrint() + "\n";
+                }
+                return allAppointments;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static boolean enterAppointmentToBook(String owner, Appointment appt) {
+        if (!owner.equals("") && owner != null && appt != null) {
+            AppointmentBook aBook = appointmentBooks.get(owner);
+            if (aBook != null) { // Add to the existing book
+                aBook.addAppointment(appt);
+                return true;
+            } else { // Create a new book and add it
+                AppointmentBook anotherBook = new AppointmentBook(owner);
+                anotherBook.addAppointment(appt);
+                appointmentBooks.put(owner, anotherBook);
+                if (appointmentBooks.get(owner) == anotherBook) {
+                    // ^ This put returns null when you create a new key (a book was not already in the hashmap for this owner)
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
+}// END mainActivity class

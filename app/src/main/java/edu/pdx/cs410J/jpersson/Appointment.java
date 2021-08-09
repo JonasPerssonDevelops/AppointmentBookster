@@ -1,12 +1,12 @@
 package edu.pdx.cs410J.jpersson;
 
+import edu.pdx.cs410J.AbstractAppointment;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import edu.pdx.cs410J.AbstractAppointment;
 
 /**
  *  An object of this class stores all the information about a single appointment
