@@ -18,7 +18,9 @@
         android:id="@+id/main_textview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25dp"
         android:text="@string/main_textview_mainmenu"
+        android:theme = "@style/lightStyle"
         app:layout_constraintBottom_toTopOf="@id/main_guideline_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

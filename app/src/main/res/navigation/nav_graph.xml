@@ -48,11 +48,19 @@
         android:id="@+id/SearchFragment"
         android:name="edu.pdx.cs410J.jpersson.SearchFragment"
         android:label="@string/search_fragment_label"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_SearchFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ReadmeFragment"
         android:name="edu.pdx.cs410J.jpersson.ReadmeFragment"
         android:label="@string/readme_fragment_label"
-        tools:layout="@layout/fragment_readme" />
+        tools:layout="@layout/fragment_readme" >
+        <action
+            android:id="@+id/action_ReadmeFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 
 </navigation>

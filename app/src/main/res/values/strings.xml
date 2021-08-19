@@ -2,7 +2,7 @@
     <string name="app_name">AppointmentBookster</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
+    <string name="first_fragment_label">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AppointmentBookster</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="add_fragment_label">Add An Appointment</string>
     <string name="search_fragment_label">Search Appointments</string>
@@ -38,6 +38,7 @@
 
     <!-- SearchFragment strings -->
     <string name="search_textview_default">This is the search fragment</string>
+    <string name="searchButtonSearch">Search</string>
 
     <!-- ReadmeFragment strings -->
     <string name="readmeTextviewDefault">This is the README fragment</string>

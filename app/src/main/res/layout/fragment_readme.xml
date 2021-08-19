@@ -10,25 +10,70 @@
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/readmeGuidelineTop"
+        android:id="@+id/readmeGuidelineTextTop"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3"/>
+        app:layout_constraintGuide_percent="0.05"/>
 
-    <TextView
-        android:id="@+id/readmeTextviewDefault"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/readmeGuidelineTextBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/readmeTextviewDefault"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/readmeGuidelineTop" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86" />
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/readmeGuidelineLeft"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/readmeGuidelineRight"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9"/>
+
+
+    <EditText
+        android:id="@+id/readmeEdittextMaintext"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:cursorVisible="false"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@+id/readmeGuidelineBottom"
+
+        app:layout_constraintLeft_toLeftOf="@+id/readmeGuidelineLeft"
+        app:layout_constraintRight_toLeftOf="@+id/readmeGuidelineRight" />
+    <!-- android:inputType = "none" -->
+
+    <TextView
+        android:id="@+id/readmeTextviewMaintext"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:textColor="#333333"
+        app:layout_constraintTop_toBottomOf="@+id/readmeGuidelineTextTop"
+        app:layout_constraintBottom_toTopOf="@+id/readmeGuidelineTextBottom"
+        app:layout_constraintLeft_toRightOf="@+id/readmeGuidelineLeft"
+        app:layout_constraintRight_toRightOf="@+id/readmeGuidelineRight" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/readmeGuidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.8" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/readmeGuidelineReturnmainmenu"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
 
     <Button
         android:id="@+id/readmeReturn"
@@ -36,10 +81,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/readmeGuidelineBottom" />
+        app:layout_constraintTop_toTopOf="@+id/readmeGuidelineReturnmainmenu" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/snackbarGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,11 +3,13 @@ package edu.pdx.cs410J.jpersson;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -24,12 +26,6 @@ import java.util.Date;
 import edu.pdx.cs410J.jpersson.databinding.FragmentAddBinding;
 
 public class AddFragment extends Fragment {
-
-    public static final String INCORRECT_START_DATETIME = "ERROR: The start date and time must be in the format MM/DD/YYYY HH:MM am/pm.";
-    public static final String INCORRECT_END_DATETIME = "ERROR: The end date and time must be in the format MM/DD/YYYY HH:MM am/pm.";
-    public static final String INVALID_OWNER = "ERROR: The owner field cannot be left blank.";
-    public static final String INVALID_DESCRIPTION = "ERROR: The description field cannot be left blank.";
-    public static final String ERROR_ADDING_APPOINTMENT = "ERROR: Could not add this appointment to the owners book.";
 
     EditText editTextOwner;
     EditText editTextDescription;
@@ -64,43 +60,35 @@ public class AddFragment extends Fragment {
             public void onClick(View view) { // Do this for every click:
                 Date startDate = null;
                 Date endDate = null;
-                String message = "";
                 String owner = editTextOwner.getText().toString();
                 String description = editTextDescription.getText().toString();
                 String startDateTime = editTextStartDateTime.getText().toString();
                 String endDateTime = editTextEndDateTime.getText().toString();
 
                 if(owner.equals("")) {
-                    sendSnackbarMessage(view, INVALID_OWNER);
+                    sendSnackbarMessage(view, ErrorMessages.INVALID_OWNER);
                     return;
                 }
                 if(description.equals("")) {
-                    sendSnackbarMessage(view, INVALID_DESCRIPTION);
+                    sendSnackbarMessage(view, ErrorMessages.INVALID_DESCRIPTION);
                     return;
                 }
-                if(!parseDateTime(startDateTime, startDate)) {
-                    sendSnackbarMessage(view, INCORRECT_START_DATETIME);
+                if(!ParseUserInput.parseDateTime(startDateTime, startDate)) {
+                    sendSnackbarMessage(view, ErrorMessages.INCORRECT_START_DATETIME);
                     return;
                 }
-                if(!parseDateTime(endDateTime, endDate)) {
-                    sendSnackbarMessage(view, INCORRECT_END_DATETIME);
+                if(!ParseUserInput.parseDateTime(endDateTime, endDate)) {
+                    sendSnackbarMessage(view, ErrorMessages.INCORRECT_END_DATETIME);
                     return;
                 }
                 // ^ When these checks for errors fail the data is valid and an appointment can be entered
                 Appointment appt = new Appointment();
                 appt.processAppointment(description, startDateTime, endDateTime);
-/*
-                AppointmentBook anotherBook = new AppointmentBook(owner);
-                anotherBook.addAppointment(appt);
-                AppointmentBook returnValue = MainActivity.appointmentBooks.put(owner, anotherBook);
-                sendSnackbarMessage(view, "anotherBook printed value:" + anotherBook + "\nput return value:" + returnValue );
-*/
-
 
                 if (MainActivity.enterAppointmentToBook(owner, appt)) {
                     sendSnackbarMessage(view, "Appointment successfully entered for " + owner + ":\n" + appt.prettyPrint());
                 } else {
-                    sendSnackbarMessage(view, ERROR_ADDING_APPOINTMENT);
+                    sendSnackbarMessage(view, ErrorMessages.ERROR_ADDING_APPOINTMENT);
                 }
 
                 ownerTestVariable = owner;         // Testing variable
@@ -109,22 +97,15 @@ public class AddFragment extends Fragment {
             }
         }); // END onClickListener
 
-        // Testing button
-        binding.fab2.setOnClickListener(new View.OnClickListener() {
+
+        binding.addReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                AppointmentBook aBook = MainActivity.appointmentBooks.get(ownerTestVariable);
-                String str;
-
-                if (aBook != null) {
-                    sendSnackbarMessage(view, "Appointments successfully retrieved for " + MainActivity.prettyPrintToString(aBook));
-                } else {
-                    sendSnackbarMessage(view, "Could not retrieve an appointment book for " + ownerTestVariable + ".");
-                }
+                NavHostFragment.findNavController(AddFragment.this)
+                        .navigate(R.id.action_AddFragment_to_FirstFragment);
             }
-        }); // END onClickListener
-
+            // ^ Here is where the next button magic is that takes you to the next fragment via an action
+        }); // END setOnClickListener
 
     } // END onViewCreated()
 
@@ -144,52 +125,41 @@ public class AddFragment extends Fragment {
         sb.show();
     }
 
-    public static boolean parseDateTime(String str, Date date) { // date is returned or null if false
-        // ^ Gets the text in the TextEdit boxes as the strings str
-        String [] dateTime = str.trim().split("\\s+");
-
-        if (!validateDate(dateTime[0])) { // The date was malformatted
-            return false;
-        }
-        date = Appointment.parseStringToDate(str);
-        if (date == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean validateDate(String str) {
-        int strLength = str.length();
-        if (strLength < 8) {
-            return false;
-        }
-
-        if (str.contains("/")) {
-            String [] splitDate = str.split("/");
-            if (splitDate.length == 3) {
-                if (((splitDate[0].length() == 1) || (splitDate[0].length() == 2))
-                        && ((splitDate[1].length() == 1) || (splitDate[1].length() == 2))
-                        && (splitDate[2].length() == 4)) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-            else {  // The string given for a date doesn't have the 3 arguments required: month, date, and year
-                return false;
-            }
-        }
-        return false;
-    }
-
 
 
 } // End of AddFragment
 
 
+/* SPARE CODE AND TEST CODE:
 
-/*
+        // Testing button
+        binding.fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String returnVal = MainActivity.readObjectFromFile(MainActivity.appDataPath, "aBooksJP.ser");
+
+                sendSnackbarMessage(view, "readObjectFromFile was called and returned: " + returnVal);
+
+
+
+            }
+                    }); // END onClickListener
+
+      String returnVal = MainActivity.writeObjectToFile(MainActivity.appointmentBooks, MainActivity.appDataPath, "aBooksJP.ser");
+
+                sendSnackbarMessage(view, "writeObjectToFile was called and returned: " + returnVal);
+
+
+
+
+// Some testing code:
+
+                AppointmentBook anotherBook = new AppointmentBook(owner);
+                anotherBook.addAppointment(appt);
+                AppointmentBook returnValue = MainActivity.appointmentBooks.put(owner, anotherBook);
+                sendSnackbarMessage(view, "anotherBook printed value:" + anotherBook + "\nput return value:" + returnValue );
+
 
 
 // Fully working snackbar:

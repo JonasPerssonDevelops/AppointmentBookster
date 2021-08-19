@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Project 5 added colors -->
+    <color name="menu_grey">#6c6c6c</color>
+    <color name="menu_grey_variant">#333333</color>
+    <color name="menu_text">#ffd200</color>
+
+
+
 </resources>
